@@ -13,6 +13,25 @@ const config: GatsbyConfig = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        name: "Gatsby Starter Kurochen Homepage",
+        short_name: "Gatsby",
+        start_url: "/",
+        // These can be imported once ESM support lands
+        background_color: "#ffffff",
+        theme_color: "#004ca3",
+        icon: "src/images/favicon.png",
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+      },
+    },
   ],
 }
 
