@@ -4,20 +4,20 @@ import { Container, Box, Text } from "./ui"
 import Feature, { FeatureDataProps } from "./feature"
 
 export interface FeatureListProps {
-    kicker?: string
-    heading: string
-    text?: string
-    content: FeatureDataProps[]
+  kicker?: string
+  heading: string
+  text?: string
+  content: FeatureDataProps[]
 }
 
 const data3 = {
-    kicker: "feature",
-    heading: "Преимущества"
+  kicker: "feature",
+  heading: "Преимущества"
 }
 
 export default function FeatureList(props: FeatureListProps) {
 
-    const data = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query {
       allFeatureListJson(sort: {fields: jsonId, order: DESC}) {
         nodes {
@@ -39,31 +39,24 @@ export default function FeatureList(props: FeatureListProps) {
     }
   `)
 
-    const mergeById = (a1, a2) =>
-        a1.map(itm => ({
-            ...a2.find((item) => (item.fixed.originalName === itm.imageName) && item),
-            ...itm
-        }));
+  const mergeById = (a1, a2) =>
+    a1.map(itm => ({
+      ...a2.find((item) => (item.fixed.originalName === itm.imageName) && item),
+      ...itm
+    }));
 
-    const data2 = mergeById(data.allFeatureListJson.nodes, data.allImageSharp.nodes)
-
-
+  const data2 = mergeById(data.allFeatureListJson.nodes, data.allImageSharp.nodes)
 
 
-    return (
-        <Container width="fullbleed">
-            <Box background="muted" radius="large">
-                <Box center paddingY={5}>
-                    <Text as="h3" variant="heading">
-                        {data3.kicker && <Text variant="kicker">{data3.kicker}</Text>}
-                        {/* {data3.heading} */}
-                    </Text>
-                    {props.text && <Text>{props.text}</Text>}
-                </Box>
-                {data2.map((feature, i) => (
-                    <Feature key={feature.jsonId} {...feature} flip={Boolean(i % 2)} />
-                ))}
-            </Box>
-        </Container>
-    )
+
+
+  return (
+    <Container width="fullbleed">
+      <Box background="muted" radius="large">
+        {data2.map((feature, i) => (
+          <Feature key={feature.jsonId} {...feature} flip={Boolean(i % 2)} />
+        ))}
+      </Box>
+    </Container>
+  )
 }
