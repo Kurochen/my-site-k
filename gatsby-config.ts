@@ -13,6 +13,8 @@ const config: GatsbyConfig = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    `gatsby-transformer-json`,
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -30,6 +32,13 @@ const config: GatsbyConfig = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/data/`,
       },
     },
   ],
