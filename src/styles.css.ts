@@ -12,6 +12,7 @@ globalStyle("body", {
 
 globalStyle("*", {
     boxSizing: "border-box",
+
 })
 
 globalKeyframes("zoomInUp", {

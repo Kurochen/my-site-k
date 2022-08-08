@@ -1,4 +1,30 @@
 {
     "heroHead": "Ультра быстрые сайты Gatsby",
-    "heroText": "Попробуйте один из самых быстрых сайтов на платформе Gatsby"
+    "heroText": "Попробуйте один из самых быстрых сайтов на платформе Gatsby",
+    "benefits": [
+        {
+            "id": "1",
+            "text": ""
+        }
+    ],
+    "logoList": [
+        {
+            "id": "1",
+            "alt": "text",
+            "image": "ng.png",
+            "imageMono": "ng-mono.png"
+        },
+        {
+            "id": "1",
+            "alt": "text",
+            "image": "kfc.png",
+            "imageMono": "kfc-mono.png"
+        },
+        {
+            "id": "1",
+            "alt": "text",
+            "image": "paypal.png",
+            "imageMono": "paypal-mono.png"
+        }
+    ]
 }

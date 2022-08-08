@@ -53,6 +53,10 @@ export default function FeatureList(props: FeatureListProps) {
   return (
     <Container width="fullbleed">
       <Box background="muted" radius="large">
+        <Box center paddingY={5}>
+          <Text variant="kicker">Feature</Text>
+          <Text as="h2" variant="heading">Преимущества</Text>
+        </Box>
         {data2.map((feature, i) => (
           <Feature key={feature.jsonId} {...feature} flip={Boolean(i % 2)} />
         ))}

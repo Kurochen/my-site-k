@@ -234,3 +234,25 @@ export function ButtonList({
         </FlexList>
     )
 }
+
+interface SpaceProps extends BaseProps {
+    size?: SpaceTokens | "auto"
+}
+
+export function Space({ size = "auto", ...props }: SpaceProps) {
+    return <Base cx={[styles.margin[size]]} {...props} />
+}
+
+interface LogoProps extends GatsbyImageProps {
+    size: styles.LogoSizes
+}
+
+export function Logo({ alt, image, size = "small" }: LogoProps) {
+    return (
+        <GatsbyImage
+            alt={alt}
+            image={getImage(image)}
+            className={styles.logos[size]}
+        />
+    )
+}

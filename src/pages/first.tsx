@@ -2,6 +2,7 @@ import * as React from "react"
 import FeatureList from "../components/feature-list"
 import Hero from "../components/hero"
 import Layout from "../components/layout"
+import LogoList from "../components/logo-list"
 
 const dataLink = {
     id: "string",
@@ -11,6 +12,7 @@ const dataLink = {
 }
 
 const dataFirst = {
+    kicker: "jamstack architecture",
     h1: "Ультра быстрые сайты Gatsby",
     text: "Попробуйте один из самых быстрых сайтов на платформе Gatsby",
     links: [dataLink, dataLink]
@@ -22,6 +24,7 @@ function FirstPage() {
             <Hero
                 {...dataFirst}
             />
+            <LogoList />
             <FeatureList />
         </Layout>
 

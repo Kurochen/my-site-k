@@ -272,6 +272,7 @@ export const text: Record<TextVariants, string> = styleVariants({
             fontWeight: theme.fontWeights.normal,
             lineHeight: theme.lineHeights.text,
             letterSpacing: theme.letterSpacings.normal,
+            whiteSpace: "pre-line",
         },
     ],
     lead: [

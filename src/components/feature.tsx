@@ -26,7 +26,6 @@ interface FeatureProps {
 }
 
 export default function Feature(props: FeatureDataProps & FeatureProps) {
-    console.log(props)
     return (
         <Section padding={4} background="muted">
             <Container>
