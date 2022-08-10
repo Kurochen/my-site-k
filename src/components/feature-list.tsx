@@ -1,64 +1,87 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { Container, Box, Text } from "./ui"
-import Feature, { FeatureDataProps } from "./feature"
+import Feature from "./feature"
+import { IGatsbyImageData } from "gatsby-plugin-image"
 
-export interface FeatureListProps {
-  kicker?: string
-  heading: string
-  text?: string
-  content: FeatureDataProps[]
+export interface FeatureListData {
+  kicker: "string",
+  heading: "string",
+  features: FeaturesData[]
 }
 
-const data3 = {
-  kicker: "feature",
-  heading: "Преимущества"
+export interface FeaturesData {
+  id: string,
+  image: IGatsbyImageData,
+  kicker: string,
+  heading: string,
+  text: string
 }
 
-export default function FeatureList(props: FeatureListProps) {
 
-  const data = useStaticQuery(graphql`
-    query {
-      allFeatureListJson(sort: {fields: jsonId, order: DESC}) {
-        nodes {
-          imageName
-          text
-          jsonId
-          kicker
+export default function FeatureList() {
+
+  const queryData = useStaticQuery(graphql`
+  query {
+    dataJson {
+      featureList {
+        heading
+        kicker
+        features {
           heading
+          id
+          imageName
+          kicker
+          links
+          text
         }
       }
-      allImageSharp(filter: {fixed: {originalName: {regex: "/^feature/"}}}) {
-        nodes {
-          gatsbyImageData
+    }
+    allFile(filter: {relativeDirectory: {eq: "features"}}) {
+      nodes {
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED)
           fixed {
             originalName
           }
         }
       }
     }
-  `)
+  }
+`)
 
-  const mergeById = (a1, a2) =>
-    a1.map(itm => ({
-      ...a2.find((item) => (item.fixed.originalName === itm.imageName) && item),
-      ...itm
-    }));
+  function mergeArr(data: any[], imgs: any[]): any[] {
+    return data.map(d => ({
+      ...imgs.find((i) => (i.childImageSharp.fixed.originalName === d.imageName)),
+      ...d
+    }))
+  }
 
-  const data2 = mergeById(data.allFeatureListJson.nodes, data.allImageSharp.nodes)
+  const mergeData = mergeArr(queryData.dataJson.featureList.features,
+    queryData.allFile.nodes)
 
 
-
+  const data: FeatureListData = {
+    kicker: queryData.dataJson.featureList.kicker,
+    heading: queryData.dataJson.featureList.heading,
+    features: mergeData.map(i => ({
+      id: i.id,
+      heading: i.heading,
+      kicker: i.kicker,
+      text: i.text,
+      image: i.childImageSharp.gatsbyImageData,
+    }))
+  }
 
   return (
     <Container width="fullbleed">
       <Box background="muted" radius="large">
         <Box center paddingY={5}>
-          <Text variant="kicker">Feature</Text>
-          <Text as="h2" variant="heading">Преимущества</Text>
+          <Text variant="kicker">{data.kicker}</Text>
+          <Text as="h2" variant="heading">{data.heading}</Text>
         </Box>
-        {data2.map((feature, i) => (
-          <Feature key={feature.jsonId} {...feature} flip={Boolean(i % 2)} />
+        {data.features.map((feature, i) => (
+          <Feature key={feature.id} {...feature} flip={Boolean(i % 2)} />
         ))}
       </Box>
     </Container>

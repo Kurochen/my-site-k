@@ -1,51 +1,71 @@
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
+import { useStaticQuery, graphql } from "gatsby"
 import * as React from "react"
 import {
-    Box,
-    ButtonList,
-    Container,
-    Flex,
-    HomepageImage,
-    HomepageLink,
-    Section,
-    Text,
+  Box,
+  Container,
+  Flex,
+  Section,
+  Text,
 } from "./ui"
 
-export interface HeroProps {
-    image?: HomepageImage
-    kicker?: string
-    h1: string
-    subhead?: string
-    text: string
-    links?: HomepageLink[]
+
+interface HeroData {
+  kicker: string
+  head: string
+  text: string
+  image: IGatsbyImageData
+  alt: string
 }
 
-const ssrc = "../images/Hero.webp"
+export default function Hero() {
+  const queryData = useStaticQuery(graphql`
+    query {
+      dataJson {
+        hero {
+          alt
+          head
+          kicker
+          text
+        }
+      }
+      allImageSharp(filter: {fixed: {originalName: {regex: "/Hero/"}}}) {
+        nodes {
+          gatsbyImageData(placeholder: BLURRED)
+        }
+      }
+    }
+  `)
 
-export default function Hero(props: HeroProps) {
-    return (
-        <Section>
-            <Container>
-                <Flex gap={4} variant="responsive">
-                    <Box width="half">
-                        <StaticImage
-                            src={ssrc}
-                            alt="A dinosaur"
-                            placeholder="blurred"
-                        />
-                    </Box>
-                    <Box width="half">
-                        <Text as="h2" variant="heading">
-                            {props.kicker && <Text variant="kicker">{props.kicker}</Text>}
-                            {props.h1}
-                        </Text>
-                        <Text as="h3" variant="subhead">{props.subhead}</Text>
-                        <Text as="p">{props.text}</Text>
-                        {/* <ButtonList links={props.links} /> */}
-                    </Box>
-                </Flex>
-            </Container>
-        </Section>
-    )
+  const data: HeroData = {
+    ...queryData.dataJson.hero,
+    image: queryData.allImageSharp.nodes[0].gatsbyImageData
+  }
+
+  const image = getImage(data.image)
+
+  return (
+    <Section>
+      <Container>
+        <Flex gap={4} variant="responsive">
+          <Box width="half">
+            {image ?
+              <GatsbyImage
+                alt={data.alt}
+                image={image}
+              />
+              : null}
+          </Box>
+          <Box width="half">
+            <Text as="h2" variant="heading">
+              {data.kicker && <Text variant="kicker">{data.kicker}</Text>}
+              {data.head}
+            </Text>
+            <Text as="p">{data.text}</Text>
+          </Box>
+        </Flex>
+      </Container>
+    </Section>
+  )
 }
 

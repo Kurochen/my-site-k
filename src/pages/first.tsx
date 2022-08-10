@@ -21,9 +21,7 @@ const dataFirst = {
 function FirstPage() {
     return (
         <Layout title="First page">
-            <Hero
-                {...dataFirst}
-            />
+            <Hero />
             <LogoList />
             <FeatureList />
         </Layout>

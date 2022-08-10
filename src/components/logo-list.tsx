@@ -10,6 +10,7 @@ import {
     HomepageImage,
 } from "./ui"
 import * as styles from "./logo-list.css"
+import { LogoItem } from "./logo-item";
 
 export interface LogoItemProps {
     id: string
@@ -17,36 +18,6 @@ export interface LogoItemProps {
     image: HomepageImage
 }
 
-export function LogoItem(props: LogoItemProps) {
-    if (!props.image) return null
-
-    const [isHovering, setIsHovering] = useState(false);
-
-    const handleMouseOver = () => {
-        setIsHovering(true);
-    };
-
-    const handleMouseOut = () => {
-        setIsHovering(false);
-    };
-
-    // let logo
-    // if (isHovering) {
-    //     logo = <Logo alt={props.alt} image={props.imageName} size="medium" />
-    // } else {
-    //     logo = <Logo alt={props.alt} image={props.imageMono2} size="medium" />
-    // }
-
-
-    return (
-        <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className={styles.logoItem2}>
-            {isHovering
-                ? <Logo alt={props.alt} image={props.imageName} size="medium" className={styles.logoItem2} />
-                : <Logo alt={props.alt} image={props.imageMono2} size="medium" className={styles.logoItem2} />
-            }
-        </div>
-    )
-}
 
 export interface LogoListProps {
     text?: string
