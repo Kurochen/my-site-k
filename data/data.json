@@ -14,45 +14,64 @@
                 "imageName": "why.png",
                 "kicker": "Feature",
                 "heading": "Почему Gatsby?",
-                "text": "В большинстве случаев бизнесу нужен небольшой сайт-визитка. Конструкторы сайтов, такие как Joomla, Wordpress и другие - тяжеловесны для небольшого сайта. Когда клиент заходит на страницу WordPress, ему приходится ждать, пока сервер и базы данных, сформируют страницу. ",
-                "links": "HomepageLink"
+                "text": "В большинстве случаев бизнесу нужен небольшой сайт-визитка. Конструкторы сайтов, такие как Joomla, Wordpress и другие - тяжеловесны для небольшого сайта. Когда клиент заходит на страницу WordPress, ему приходится ждать, когда сервер и базы данных, сформируют страницу. "
             },
             {
                 "id": "2",
                 "imageName": "speed.png",
                 "kicker": "Feature",
                 "heading": "Скорость",
-                "text": "Gatsby, вместо того, чтобы постоянно запускать код на сервере, формирует страницы заранее. Страница 'О нас' или например 'Контакты' уже готова. Больше нет необходимости ждать ответа сервера, загрузка страниц может быть очень быстрой. А Gatsby делает их невероятно быстрой.",
-                "links": "HomepageLink"
+                "text": "Gatsby, вместо того, чтобы постоянно запускать код на сервере, формирует страницы заранее. Страница 'О нас' или например 'Контакты' уже готова. Больше нет необходимости ждать ответа сервера, загрузка страниц может быть очень быстрой. А Gatsby делает их невероятно быстрой."
             },
             {
                 "id": "3",
                 "imageName": "cheel.png",
                 "kicker": "Feature",
-                "heading": "Безопасность и SEO",
-                "text": "По данным Google - более половины пользователей покидает ресурс, если страница загружается дольше трех секунд. Также, это снижает ранжируемость сайта в поисковиках. Кроме сайтов Gatsby разумеется. \n Бонусом - отсутствие сервера и базы данных повышает безопасность и отказоустойчивость сайта.",
-                "links": "HomepageLink"
+                "heading": "SEO",
+                "text": "По данным Google - более половины пользователей покидает ресурс, если страница загружается дольше трех секунд. Также, это снижает ранжируемость сайта в поисковиках. Кроме сайтов Gatsby разумеется. \n Бонусом - отсутствие сервера и базы данных повышает безопасность и отказоустойчивость сайта."
             }
         ]
     },
-    "logoList": [
-        {
-            "id": "1",
-            "alt": "text",
-            "image": "ng.png",
-            "imageMono": "ng-mono.png"
-        },
-        {
-            "id": "1",
-            "alt": "text",
-            "image": "kfc.png",
-            "imageMono": "kfc-mono.png"
-        },
-        {
-            "id": "1",
-            "alt": "text",
-            "image": "paypal.png",
-            "imageMono": "paypal-mono.png"
-        }
-    ]
+    "logoList": {
+        "heading": "Присоединяйтесь к ведущим организациям, использующих решения Gatsby",
+        "linkMore": "https://www.gatsbyjs.com/showcase/",
+        "linkText": "... и множество других",
+        "logos": [
+            {
+                "id": "1",
+                "alt": "National Geographic",
+                "image": "ng.png",
+                "imageMono": "ng-mono.png",
+                "link": "https://nationalgeographic.co.uk"
+            },
+            {
+                "id": "2",
+                "alt": "kfc global",
+                "image": "kfc.png",
+                "imageMono": "kfc-mono.png",
+                "link": "https://global.kfc.com/"
+            },
+            {
+                "id": "3",
+                "alt": "PayPal Developer",
+                "image": "paypal.png",
+                "imageMono": "paypal-mono.png",
+                "link": "https://developer.paypal.com/home"
+            },
+            {
+                "id": "4",
+                "alt": "Airbnb Engineering & Data Science",
+                "image": "airbnb.png",
+                "imageMono": "airbnb-mono.png",
+                "link": "https://airbnb.io/"
+            },
+            {
+                "id": "5",
+                "alt": "React.js",
+                "image": "react.png",
+                "imageMono": "react-mono.png",
+                "link": "https://reactjs.org"
+            }
+        ]
+    }
 }

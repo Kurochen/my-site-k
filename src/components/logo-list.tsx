@@ -1,45 +1,53 @@
-import React, { useState } from "react";
+import React from "react";
 import { graphql, useStaticQuery } from "gatsby"
 import {
-    Space,
-    Container,
-    Section,
-    FlexList,
-    Text,
-    Logo,
-    HomepageImage,
+  Space,
+  Container,
+  Section,
+  FlexList,
+  Text,
+  Link,
 } from "./ui"
-import * as styles from "./logo-list.css"
 import { LogoItem } from "./logo-item";
+import { IGatsbyImageData } from "gatsby-plugin-image";
 
-export interface LogoItemProps {
-    id: string
-    alt: string
-    image: HomepageImage
+export interface LogoListData {
+  heading: string,
+  linkMore: string,
+  linkText: string,
+  logos: LogosData[]
 }
 
-
-export interface LogoListProps {
-    text?: string
-    logos: LogoItemProps[]
+export interface LogosData {
+  id: string,
+  alt: string,
+  image: IGatsbyImageData,
+  imageMono: IGatsbyImageData,
+  link: string
 }
 
-export default function LogoList(props: LogoListProps) {
-    const data = useStaticQuery(graphql`
+export default function LogoList() {
+  const queryData = useStaticQuery(graphql`
     query {
       dataJson {
         logoList {
-          alt
-          id
-          image
-          imageMono
+          heading
+          linkMore
+          linkText
+          logos {
+            alt
+            id
+            image
+            imageMono
+            link
+          }
         }
       }
       allFile(filter: {relativeDirectory: {eq: "logos"}}) {
         edges {
           node {
             childImageSharp {
-              gatsbyImageData
+              gatsbyImageData(placeholder: BLURRED)
               fixed {
                 originalName
               }
@@ -50,41 +58,52 @@ export default function LogoList(props: LogoListProps) {
     }
   `)
 
+  const mergeArr = (a1: any[], a2: any[]): any[] =>
+    a1.map(itm => ({
+      image2: a2.find((item) => (item.node.childImageSharp.fixed.originalName === itm.image)),
+      imageMono2: a2.find((item) => (item.node.childImageSharp.fixed.originalName === itm.imageMono)),
+      ...itm
+    }));
 
+  const mergeData = mergeArr(queryData.dataJson.logoList.logos, queryData.allFile.edges)
 
-    const mergeData = (a1, a2) =>
-        a1.map(itm => ({
-            imageName: a2.find((item) => (item.node.childImageSharp.fixed.originalName === itm.image))?.node.childImageSharp.gatsbyImageData,
-            imageMono2: a2.find((item) => (item.node.childImageSharp.fixed.originalName === itm.imageMono))?.node.childImageSharp.gatsbyImageData,
-            ...itm
-        }));
+  const data: LogoListData = {
+    heading: queryData.dataJson.logoList.heading,
+    linkMore: queryData.dataJson.logoList.linkMore,
+    linkText: queryData.dataJson.logoList.linkText,
+    logos: mergeData.map(i => ({
+      id: i.id,
+      alt: i.alt,
+      link: i.link,
+      image: i.image2.node.childImageSharp.gatsbyImageData,
+      imageMono: i.imageMono2.node.childImageSharp.gatsbyImageData
+    }))
+  }
 
-
-    const data2 = mergeData(data.dataJson.logoList, data.allFile.edges)
-
-    console.log("data2", data2)
-
-    return (
-
-        <Section paddingY={4}>
-            <Container width="narrow">
-                {props.text && (
-                    <Text center variant="lead">
-                        {props.text}
-                    </Text>
-                )}
-                <Space size={4} />
-                <FlexList gap={4} variant="center">
-                    {data2.map(
-                        (logo) =>
-                            logo && (
-                                <li key={logo.id}>
-                                    <LogoItem {...logo} />
-                                </li>
-                            )
-                    )}
-                </FlexList>
-            </Container>
-        </Section>
-    )
+  return (
+    <Section paddingY={4}>
+      <Container width="narrow">
+        {data.heading && (
+          <Text center variant="lead">
+            {data.heading}
+          </Text>
+        )}
+        <Space size={4} />
+        <FlexList gap={4} variant="center">
+          {data.logos.map(
+            (logo) =>
+              logo && (
+                <li key={logo.id}>
+                  <LogoItem {...logo} />
+                </li>
+              )
+          )}
+        </FlexList>
+        <Space size={4} />
+        <Text center variant="body">
+          <Link to={data.linkMore} target="_blank">{data.linkText}</Link>
+        </Text>
+      </Container>
+    </Section>
+  )
 }

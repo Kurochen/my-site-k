@@ -177,6 +177,7 @@ export function Text({
 interface LinkProps extends BaseProps {
     to?: string
     href?: string
+    target?: string
 }
 
 export function Link({ to, href, ...props }: WithChildren<LinkProps>) {

@@ -5,8 +5,8 @@ import Feature from "./feature"
 import { IGatsbyImageData } from "gatsby-plugin-image"
 
 export interface FeatureListData {
-  kicker: "string",
-  heading: "string",
+  kicker: string,
+  heading: string,
   features: FeaturesData[]
 }
 
@@ -32,7 +32,6 @@ export default function FeatureList() {
           id
           imageName
           kicker
-          links
           text
         }
       }
