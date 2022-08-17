@@ -73,5 +73,26 @@
                 "link": "https://reactjs.org"
             }
         ]
+    },
+    "socialList": {
+        "icons": [
+            {
+                "id": "1",
+                "alt": "Telegram",
+                "image": "Telegram.png",
+                "imageMono": "Telegram-mono.png",
+                "link": "https://t.me/Alex_2244"
+            },
+            {
+                "id": "2",
+                "alt": "GitHub",
+                "image": "GitHub.png",
+                "imageMono": "GitHub-mono.png",
+                "link": "https://github.com/Kurochen"
+            }
+        ]
+    },
+    "additionalList": {
+        "heading": "Дополнительно"
     }
 }

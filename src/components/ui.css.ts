@@ -97,6 +97,7 @@ export const flexVariants: Record<FlexVariants, string> = styleVariants({
     },
     end: {
         alignItems: "flex-end",
+        justifyContent: "flex-end"
     },
     stretch: {
         alignItems: "stretch",
@@ -569,8 +570,9 @@ export type LogoSizes = "small" | "medium"
 
 export const logos: Record<LogoSizes, string> = styleVariants({
     small: {
-        width: "85px",
-        height: "20px",
+        maxWidth: "30px",
+        // width: "85px",
+        //maxHeight: "20px",
     },
     medium: {
         maxWidth: "128px",

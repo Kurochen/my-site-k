@@ -23,7 +23,8 @@ export interface LogosData {
   alt: string,
   image: IGatsbyImageData,
   imageMono: IGatsbyImageData,
-  link: string
+  link: string,
+  size: string
 }
 
 export default function LogoList() {
@@ -72,6 +73,7 @@ export default function LogoList() {
     linkMore: queryData.dataJson.logoList.linkMore,
     linkText: queryData.dataJson.logoList.linkText,
     logos: mergeData.map(i => ({
+      size: "medium",
       id: i.id,
       alt: i.alt,
       link: i.link,

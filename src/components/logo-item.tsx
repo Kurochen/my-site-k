@@ -1,12 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-    Space,
-    Container,
-    Section,
-    FlexList,
-    Text,
     Logo,
-    HomepageImage,
     Link,
 } from "./ui"
 
@@ -22,11 +16,11 @@ export function LogoItem(props: LogosData) {
         <Link to={props.link} target="_blank">
 
             <div className={styles.logoItem3}>
-                <Logo alt={props.alt} image={props.image} size="medium" />
+                <Logo alt={props.alt} image={props.image} size={props.size} />
             </div>
 
             <div className={styles.logoItem4}>
-                <Logo alt={props.alt} image={props.imageMono} size="medium" />
+                <Logo alt={props.alt} image={props.imageMono} size={props.size} />
             </div>
 
         </Link>

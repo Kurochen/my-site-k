@@ -191,6 +191,14 @@ export function Link({ to, href, ...props }: WithChildren<LinkProps>) {
     return <GatsbyLink to={url} className={styles.link} {...props} />
 }
 
+export function NavLink({ ...props }) {
+    return <Base as={Link} cx={[styles.navlink]} {...props} />
+}
+
+export function IconLink(props) {
+    return <NavLink cx={[styles.iconLink]} {...props} />
+}
+
 
 interface ButtonProps extends BaseProps {
     variant?: styles.ButtonVariants
@@ -257,3 +265,4 @@ export function Logo({ alt, image, size = "small" }: LogoProps) {
         />
     )
 }
+
