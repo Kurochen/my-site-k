@@ -5,8 +5,18 @@ import {
 } from "./ui"
 
 import * as styles from "./logo-item.css"
-import { LogosData } from "./logo-list";
+import { IGatsbyImageData } from "gatsby-plugin-image";
+import { LogoSizes } from "./ui.css";
 
+
+export interface LogosData {
+    id: string,
+    alt: string,
+    image: IGatsbyImageData,
+    imageMono: IGatsbyImageData,
+    link: string,
+    size: LogoSizes
+}
 
 
 export function LogoItem(props: LogosData) {

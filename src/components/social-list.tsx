@@ -1,28 +1,13 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby"
-import {
-    Space,
-    Container,
-    Section,
-    FlexList,
-    Text,
-    Link,
-} from "./ui"
-import { LogoItem } from "./logo-item";
-import { IGatsbyImageData } from "gatsby-plugin-image";
+import { FlexList } from "./ui"
+import { LogoItem, LogosData } from "./logo-item";
 
 export interface SocialListData {
     icons: LogosData[]
 }
 
-export interface LogosData {
-    id: string,
-    alt: string,
-    image: IGatsbyImageData,
-    imageMono: IGatsbyImageData,
-    link: string,
-    size: string
-}
+
 
 export default function SocialList() {
     const queryData = useStaticQuery(graphql`
@@ -62,7 +47,6 @@ export default function SocialList() {
 
     const mergeData = mergeArr(queryData.dataJson.socialList.icons, queryData.allFile.edges)
 
-    console.log("5555555555555", mergeData)
 
     const data: SocialListData = {
 

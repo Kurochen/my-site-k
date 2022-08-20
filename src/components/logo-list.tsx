@@ -8,8 +8,7 @@ import {
   Text,
   Link,
 } from "./ui"
-import { LogoItem } from "./logo-item";
-import { IGatsbyImageData } from "gatsby-plugin-image";
+import { LogoItem, LogosData } from "./logo-item";
 
 export interface LogoListData {
   heading: string,
@@ -18,14 +17,7 @@ export interface LogoListData {
   logos: LogosData[]
 }
 
-export interface LogosData {
-  id: string,
-  alt: string,
-  image: IGatsbyImageData,
-  imageMono: IGatsbyImageData,
-  link: string,
-  size: string
-}
+
 
 export default function LogoList() {
   const queryData = useStaticQuery(graphql`
