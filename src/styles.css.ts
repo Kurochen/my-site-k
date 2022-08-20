@@ -10,6 +10,7 @@ globalStyle("body", {
     MozOsxFontSmoothing: "grayscale",
 })
 
+
 globalStyle("*", {
     boxSizing: "border-box",
 
