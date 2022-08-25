@@ -16,7 +16,6 @@ const config: GatsbyConfig = {
     'gatsby-transformer-sharp',
     `gatsby-transformer-json`,
     `gatsby-plugin-gatsby-cloud`,
-    'gatsby-plugin-fontawesome-css',
     {
       resolve: "gatsby-plugin-manifest",
       options: {
