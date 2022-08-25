@@ -155,7 +155,7 @@ export default function Footer() {
 
 
                 <Flex variant="end" >
-                    <SocialList />
+                    {/* <SocialList /> */}
                     {/* <NavLink to="/">
                         <VisuallyHidden>Home</VisuallyHidden>
                         <BrandLogo />
